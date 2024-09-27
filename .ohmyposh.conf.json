@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "status",
+          "alias": "Status",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "transparent",
+          "foreground_templates": [
+            "{{ if .Error }}#ff0080{{ else }}#00ff00{{ end }}"
+          ],
+          "template": "{{ if eq .Code 0 }}\uf00c{{ else }}\uf071{{ end }}",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "foreground": "#ffffff",
+          "background": "transparent",
+          "style": "diamond",
+          "foreground_templates": [
+            "{{ if .Segments.Status.Error }}#ff0080{{ else }}#00ff00{{ end }}"
+          ],
+          "template": " {{ .FormattedMs }} ",
+          "properties": {
+            "threshold": 500,
+            "style": "round",
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "time",
+          "template": " <b>{{ .CurrentDate | date .Format }}</b> ",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "foreground": "#ffffff",
+          "background": "#ff5a00",
+          "style": "diamond",
+          "leading_diamond": ""
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "os",
+          "foreground": "#000000",
+          "background": "#ffffff",
+          "style": "diamond",
+          "trailing_diamond": ""
+        },
+        {
+          "type": "session",
+          "template": " {{ .UserName }} ",
+          "foreground": "#ffffff",
+          "background": "#ffb300",
+          "style": "powerline",
+          "powerline_symbol": ""
+        },
+        {
+          "foreground": "#ffffff",
+          "background": "#000000",
+          "style": "accordion",
+          "powerline_symbol": ""
+        },
+        {
+          "type": "path",
+          "template": " {{ .Path }} ",
+          "foreground": "#ffffff",
+          "background": "#61AFEF",
+          "style": "powerline",
+          "powerline_symbol": ""
+        }
+      ]
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}
