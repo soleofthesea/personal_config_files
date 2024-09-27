@@ -4,6 +4,7 @@ SAVEHIST=100
 setopt appendhistory
 
 PATH=~/.local/bin:$PATH
+STEAMAPPS=~/.local/share/Steam/steamapps
 
 bindkey  "^[[H"     beginning-of-line      #Home
 bindkey  "^[[F"     end-of-line            #End
