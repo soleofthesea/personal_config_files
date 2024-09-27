@@ -66,8 +66,20 @@
           "powerline_symbol": ""
         },
         {
+          "type": "command",
+          "alias": "CMD",
+          "foreground": "#fffff",
+          "background": "#61AFEF",
+          "style": "accordion",
+          "powerline_symbol": "",
+          "properties": {
+            "shell": "zsh",
+            "command": "[ -w $(pwd) ]; if [[ $? == 1 ]]; then echo \"󰌾 \"; fi"
+          }
+        },
+        {
           "type": "path",
-          "template": " {{ .Path | replace \"pfx\/drive_c\/users\/steamuser\/AppData\" \"\u0025WINEAPPDATA\u0025\" }} ",
+          "template": "{{.Path | replace \"pfx\/drive_c\/users\/steamuser\/AppData\" \"\u0025WINEAPPDATA\u0025\"}} ",
           "foreground": "#ffffff",
           "background": "#61AFEF",
           "style": "powerline",
