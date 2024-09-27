@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
       "type": "rprompt",
@@ -60,25 +59,26 @@
         },
         {
           "type": "session",
-          "template": " {{ .UserName }} ",
-          "foreground": "#ffffff",
-          "background": "#ffb300",
+          "template": " {{ .HostName }} ",
+          "foreground": "#404040",
+          "background": "#efbf04",
           "style": "powerline",
-          "powerline_symbol": ""
-        },
-        {
-          "foreground": "#ffffff",
-          "background": "#000000",
-          "style": "accordion",
           "powerline_symbol": ""
         },
         {
           "type": "path",
-          "template": " {{ .Path }} ",
+          "template": " {{ .Path | replace \"pfx\/drive_c\/users\/steamuser\/AppData\" \"\u0025WINEAPPDATA\u0025\" }} ",
           "foreground": "#ffffff",
           "background": "#61AFEF",
           "style": "powerline",
-          "powerline_symbol": ""
+          "powerline_symbol": "",
+          "properties": {
+            "style": "full",
+            "mapped_locations": {
+              "~/.local/share/Steam/steamapps": "\u0025STEAMAPPS\u0025",
+              "~/.local/share/Steam/steamapps/compatdata": "\u0025STEAMCOMPATDATA\u0025"
+            }
+          }
         }
       ]
     }
