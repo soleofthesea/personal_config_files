@@ -74,12 +74,12 @@
           "powerline_symbol": "",
           "properties": {
             "shell": "zsh",
-            "command": "[ -w $(pwd) ]; if [[ $? == 1 ]]; then echo \"󰌾 \"; fi"
+            "command": "[ -w . ]; if [[ $? == 1 ]]; then echo \"󰌾 \"; fi"
           }
         },
         {
           "type": "path",
-          "template": "{{.Path | replace \"pfx\/drive_c\/users\/steamuser\/AppData\" \"\u0025WINEAPPDATA\u0025\"}} ",
+          "template": "{{ .Path | replace \"pfx\/drive_c\" \"C:\" | replace \"wine\/drive_c\" \"C:\" | replace \"users\/steamuser\" \"~\" | replace \"users\/wasd\" \"~\" }} ",
           "foreground": "#ffffff",
           "background": "#61AFEF",
           "style": "powerline",
@@ -87,8 +87,10 @@
           "properties": {
             "style": "full",
             "mapped_locations": {
-              "~/.local/share/Steam/steamapps": "\u0025STEAMAPPS\u0025",
-              "~/.local/share/Steam/steamapps/compatdata": "\u0025STEAMCOMPATDATA\u0025"
+              "~/.local/share/Steam/steamapps": "\u0025STEAM\u0025",
+              "~/.local/share/Steam/steamapps/compatdata": "\u0025STEAMWINE\u0025",
+              "/mnt/SteamGames/SteamLibrary/steamapps": "\u0025MNTSTEAM\u0025",
+              "/mnt/SteamGames/SteamLibrary/steamapps/compatdata": "\u0025MNTSTEAMWINE\u0025"
             }
           }
         }
