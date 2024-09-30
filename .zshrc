@@ -2,8 +2,16 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-# Write all commands to history immediately rather than
-# waiting until terminal is closed
+# Auto add ~ to home folders
+setopt CDABLE_VARS
+
+# Sort items 1 2 3 10, not 1 10 2 3
+setopt NUMERIC_GLOB_SORT
+
+# Dont write duplicate entries to history file
+setopt HIST_IGNORE_ALL_DUPS
+
+# Write all commands to history immediately rather than when terminal is closed
 setopt INC_APPEND_HISTORY
 
 # Set this otherwise autocomplete wont work
@@ -41,11 +49,10 @@ fn cat() {
 
 # Function to list files & folders upon changing directory
 #########################################################
-fn chpwd() {
-    emulate -L zsh
-    eza -1a --group-directories-first || /usr/bin/ls --almost-all --color --format=single-column --group-directories-first
-}
-
+# fn chpwd() {
+#     emulate -L zsh
+#     eza -1a --group-directories-first || /usr/bin/ls --almost-all --color --format=single-column --group-directories-first
+# }
 
 # Plugins
 #########################################################
