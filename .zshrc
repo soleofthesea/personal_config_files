@@ -1,26 +1,3 @@
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-
-# Sort items 1 2 3 10, not 1 10 2 3
-setopt NUMERIC_GLOB_SORT
-
-# Dont write duplicate entries to history file
-setopt HIST_IGNORE_ALL_DUPS
-
-# Write all commands to history immediately rather than when terminal is closed
-setopt INC_APPEND_HISTORY
-
-# Make it so 'cd Documents' will always cd to ~/Documents, etc.
-setopt CDABLE_VARS
-
-Desktop=~/Desktop
-Documents=~/Documents
-Downloads=~/Downloads
-Music=~/Music
-Pictures=~/Pictures
-Videos=~/Videos
-
 # Set this otherwise autocomplete wont work
 setopt interactivecomments
 
@@ -70,10 +47,30 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Plugin added keybinds
 #########################################################
-bindkey  "^I"               menu-complete
-bindkey  "$terminfo[kcbt]"  menu-select
-bindkey  "^[[A"             history-substring-search-up
-bindkey  "^[[B"             history-substring-search-down
+bindkey  "^I"    menu-complete
+bindkey  "^[[Z"  menu-select
+bindkey  "^[[A"  history-substring-search-up
+bindkey  "^[[B"  history-substring-search-down
+
+(( ! ${+ZSH_AUTOSUGGEST_CLEAR_WIDGETS} )) && {
+	typeset -ga ZSH_AUTOSUGGEST_CLEAR_WIDGETS
+	ZSH_AUTOSUGGEST_CLEAR_WIDGETS=(
+		history-search-forward
+		history-search-backward
+		history-beginning-search-forward
+		history-beginning-search-backward
+		history-substring-search-up
+		history-substring-search-down
+		up-line-or-beginning-search
+		down-line-or-beginning-search
+		up-line-or-history
+		down-line-or-history
+		menu-complete
+		menu-select
+		accept-line
+		copy-earlier-word
+	)
+}
 
 # More colours
 #########################################################
