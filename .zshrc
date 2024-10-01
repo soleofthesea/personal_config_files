@@ -1,3 +1,26 @@
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Sort items 1 2 3 10, not 1 10 2 3
+setopt NUMERIC_GLOB_SORT
+
+# Dont write duplicate entries to history file
+setopt HIST_IGNORE_ALL_DUPS
+
+# Write all commands to history immediately rather than when terminal is closed
+setopt INC_APPEND_HISTORY
+
+# Make it so 'cd Documents' will always cd to ~/Documents, etc.
+setopt CDABLE_VARS
+
+Desktop=~/Desktop
+Documents=~/Documents
+Downloads=~/Downloads
+Music=~/Music
+Pictures=~/Pictures
+Videos=~/Videos
+
 # Set this otherwise autocomplete wont work
 setopt interactivecomments
 
@@ -71,6 +94,9 @@ bindkey  "^[[B"  history-substring-search-down
 		copy-earlier-word
 	)
 }
+
+# Set this otherwise autocomplete wont work
+setopt interactivecomments
 
 # More colours
 #########################################################
