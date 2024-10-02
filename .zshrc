@@ -1,3 +1,5 @@
+EDITOR=emacs
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -31,14 +33,16 @@ eval "$(oh-my-posh init zsh --config ~/.ohmyposh.conf.json)"
 
 # Keybindings for text traversal
 #########################################################
+
 bindkey  "^[[H"     beginning-of-line          #Home
+bindkey  "^[[1~"    beginning-of-line          #Also Home, different TTY
 bindkey  "^[[F"     end-of-line                #End
+bindkey  "^[[4~"    end-of-line                #Also End, different TTY
 bindkey  "^[[3~"    delete-char                #Delete
 bindkey  "^H"       backward-delete-word       #Ctrl+Delete
 bindkey  "^[[3;5~"  delete-word                #Ctrl+Backspace
-bindkey  "^[[1;5C"  forward-word               #Ctrl+RArrow
-bindkey  "^[[1;5D"  backward-word              #Ctrl+LArrow
-bindkey  "^i"       expand-or-complete-prefix
+bindkey  "^[[1;5C"  forward-word               #Ctrl+Right
+bindkey  "^[[1;5D"  backward-word              #Ctrl+Left
 
 # Alias UNIX commands w modern replacements, fallback if not exists
 #########################################################
@@ -58,7 +62,7 @@ fn cat() {
 #########################################################
 # fn chpwd() {
 #     emulate -L zsh
-#     eza -1a --group-directories-first || /usr/bin/ls --almost-all --color --format=single-column --group-directories-first
+#     eza -aD || /usr/bin/ls -d --almost-all --color */
 # }
 
 # Plugins
@@ -70,10 +74,10 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Plugin added keybinds
 #########################################################
-bindkey  "^I"    menu-complete
-bindkey  "^[[Z"  menu-select
-bindkey  "^[[A"  history-substring-search-up
-bindkey  "^[[B"  history-substring-search-down
+bindkey  "^I"    menu-complete                 #Tab
+bindkey  "^[[Z"  menu-select                   #Shift-Tab
+bindkey  "^[[A"  history-substring-search-up   #Up
+bindkey  "^[[B"  history-substring-search-down #Down
 
 (( ! ${+ZSH_AUTOSUGGEST_CLEAR_WIDGETS} )) && {
 	typeset -ga ZSH_AUTOSUGGEST_CLEAR_WIDGETS
