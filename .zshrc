@@ -79,35 +79,6 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-# Functions
-# NOTE Very important they are loaded after plugins
-#########################################################
-
-
-# List files & folders upon changing directory
-
-# fn chpwd() {
-#     emulate -L zsh
-#     eza -aD || /usr/bin/ls -d --almost-all --color */
-# }
-
-# Make Alt+Up go up one directory (cd ..)
-
-up-directory() {
-    builtin cd ..
-    if (( $? == 0 )); then
-        local precmd
-        for precmd in $precmd_functions; do
-            $precmd
-        done
-        zle reset-prompt
-    fi
-}
-
-zle -N up-directory
-bindkey '^[[1;3A' up-directory
-
-
 # Plugin added keybinds
 #########################################################
 bindkey  "^I"    menu-complete                 #Tab
@@ -138,6 +109,35 @@ bindkey  "^[[B"  history-substring-search-down #Down
 
 # Set this otherwise autocomplete wont work
 setopt interactivecomments
+
+
+# Functions
+# NOTE Very important they are loaded after plugins
+#########################################################
+
+
+# List files & folders upon changing directory
+
+# fn chpwd() {
+#     emulate -L zsh
+#     eza -aD || /usr/bin/ls -d --almost-all --color */
+# }
+
+# Make Alt+Up go up one directory (cd ..)
+
+up-directory() {
+    builtin cd ..
+    if (( $? == 0 )); then
+        local precmd
+        for precmd in $precmd_functions; do
+            $precmd
+        done
+        zle reset-prompt
+    fi
+}
+
+zle -N up-directory
+bindkey '^[[1;3A' up-directory
 
 
 # More colours
