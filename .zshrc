@@ -111,6 +111,14 @@ bindkey  "^[[B"  history-substring-search-down #Down
 setopt interactivecomments
 
 
+# More colours
+#########################################################
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern regexp line)
+ZSH_HIGHLIGHT_STYLES[path]=fg=magenta,underline
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=cyan
+
+
 # Functions
 # NOTE Very important they are loaded after plugins
 #########################################################
@@ -140,13 +148,8 @@ zle -N up-directory
 bindkey '^[[1;3A' up-directory
 
 
-# More colours
+# Autocomplete Params
 #########################################################
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern regexp line)
-ZSH_HIGHLIGHT_STYLES[path]=fg=magenta,underline
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=cyan
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=cyan
-
 zstyle ':completion:*' auto-description '%d'
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' format '%d'
