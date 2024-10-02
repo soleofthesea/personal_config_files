@@ -55,6 +55,15 @@ fn cat() {
   bat "$@" || /usr/bin/cat "$@"
 }
 
+# Plugins
+#########################################################
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# NOTE Very important the functions below are loaded here
+
 # Function to list files & folders upon changing directory
 #########################################################
 # fn chpwd() {
@@ -62,12 +71,21 @@ fn cat() {
 #     eza -aD || /usr/bin/ls -d --almost-all --color */
 # }
 
-# Plugins
+# Function to go up one directory (cd ..), bound to Alt+Up
 #########################################################
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+up-directory() {
+    builtin cd ..
+    if (( $? == 0 )); then
+        local precmd
+        for precmd in $precmd_functions; do
+            $precmd
+        done
+        zle reset-prompt
+    fi
+}
+
+zle -N up-directory
+bindkey '^[[1;3A' up-directory
 
 # Plugin added keybinds
 #########################################################
