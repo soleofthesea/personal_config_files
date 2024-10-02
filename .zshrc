@@ -28,6 +28,20 @@ STEAMAPPS=~/.local/share/Steam/steamapps
 
 eval "$(oh-my-posh init zsh --config ~/.ohmyposh.conf.json)"
 
+
+# Redraw the prompt every min so the clock updates
+#########################################################
+
+TMOUT=60
+
+TRAPALRM() {
+    local precmd
+        for precmd in $precmd_functions; do
+            $precmd
+        done
+        zle reset-prompt
+}
+
 # Keybindings for text traversal
 #########################################################
 
@@ -40,6 +54,7 @@ bindkey  "^H"       backward-delete-word       #Ctrl+Delete
 bindkey  "^[[3;5~"  delete-word                #Ctrl+Backspace
 bindkey  "^[[1;5C"  forward-word               #Ctrl+Right
 bindkey  "^[[1;5D"  backward-word              #Ctrl+Left
+
 
 # Alias UNIX commands w modern replacements, fallback if not exists
 #########################################################
@@ -55,6 +70,7 @@ fn cat() {
   bat "$@" || /usr/bin/cat "$@"
 }
 
+
 # Plugins
 #########################################################
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -62,17 +78,21 @@ source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# NOTE Very important the functions below are loaded here
 
-# Function to list files & folders upon changing directory
+# Functions
+# NOTE Very important they are loaded after plugins
 #########################################################
+
+
+# List files & folders upon changing directory
+
 # fn chpwd() {
 #     emulate -L zsh
 #     eza -aD || /usr/bin/ls -d --almost-all --color */
 # }
 
-# Function to go up one directory (cd ..), bound to Alt+Up
-#########################################################
+# Make Alt+Up go up one directory (cd ..)
+
 up-directory() {
     builtin cd ..
     if (( $? == 0 )); then
@@ -86,6 +106,7 @@ up-directory() {
 
 zle -N up-directory
 bindkey '^[[1;3A' up-directory
+
 
 # Plugin added keybinds
 #########################################################
@@ -114,8 +135,10 @@ bindkey  "^[[B"  history-substring-search-down #Down
 	)
 }
 
+
 # Set this otherwise autocomplete wont work
 setopt interactivecomments
+
 
 # More colours
 #########################################################
