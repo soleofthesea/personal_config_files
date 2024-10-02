@@ -23,9 +23,6 @@ Music=~/Music
 Pictures=~/Pictures
 Videos=~/Videos
 
-# Set this otherwise autocomplete wont work
-setopt interactivecomments
-
 PATH=~/.python/own/bin::~/.local/bin:$PATH
 STEAMAPPS=~/.local/share/Steam/steamapps
 
